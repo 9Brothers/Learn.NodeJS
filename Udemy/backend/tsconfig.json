@@ -4,7 +4,8 @@
     "noImplicitAny": true,
     "outDir": "dist",    
     "inlineSourceMap": true,    
-  },
+    "watch": true
+  },  
   "compileOnSave": true,
   "include": [
     "src/**/*"
