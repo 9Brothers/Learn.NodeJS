@@ -1,20 +1,18 @@
 import { MySqlConnection } from "../config/database";
 
 export class MySqlPromise<T> {
-  public static Query<T> (query: string) : Promise<T> {
 
-    let promise = new Promise<T>((resolve, reject) => {
-      
-      MySqlConnection.query(query, (err, noticias: T) => {
+  public static Query<T>(query: string) : Promise<T> {
 
-        if(err) {
+    return new Promise<T>((resolve, reject) => {
+      MySqlConnection.query(query, (err, res: T) => {
+
+        if (err) {
           reject(err);
         } else {
-          resolve(noticias);
+          resolve(res);
         }
       });
     });
-
-    return promise;
   }
 }

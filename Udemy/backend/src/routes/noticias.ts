@@ -1,10 +1,10 @@
 import * as express from 'express';
 import { NoticiasController } from '../controllers/NoticiasController';
 
-const routes = express.Router();
+const app = express.Router();
 
-routes.get('/', NoticiasController.Index);
-routes.get('/:id', NoticiasController.GetById);
-routes.post('/', NoticiasController.Store);
+app.get('/', NoticiasController.Get);
+app.get('/:id', NoticiasController.GetById);
+app.post('/', NoticiasController.Store);
 
-export const noticias = routes;
+export const noticias = app;

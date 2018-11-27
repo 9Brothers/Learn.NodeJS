@@ -1,13 +1,12 @@
-import * as express from "express";
-import { INoticia } from "../../../shared/models/INoticia";
+import * as express from 'express';
 import { MySqlPromise } from "../common/MySqlPromise";
+import { INoticia } from "../../../shared/models/INoticia"
 
 export class NoticiasController {
-
+  
   // GET: /noticias
-  public static async Index(req: express.Request, res: express.Response) {
-    
-    const noticias = await MySqlPromise.Query<INoticia[]>("SELECT * FROM noticias");
+  public static async Get(req: express.Request, res: express.Response): Promise<express.Response> {
+    let noticias = await MySqlPromise.Query<INoticia[]>("SELECT * FROM noticias");
 
     return res.json(noticias);
   }
