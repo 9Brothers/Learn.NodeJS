@@ -1,11 +1,9 @@
-import { app } from "../config/server";
-import { MySqlConnection } from "../config/database";
-import { INoticia } from "../models/INoticia";
+import * as express from 'express';
+import { NoticiasController } from '../controllers/NoticiasController';
 
+const app = express.Router();
 
-app.get('/noticias', (req, res) => {  
-  MySqlConnection.query("SELECT * FROM noticias", (err, noticias: INoticia[]) => {
+app.get('/', NoticiasController.Get);
+app.get('/:id', NoticiasController.GetById);
 
-    res.send(noticias);  
-  });
-});
+export const noticias = app;

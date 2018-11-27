@@ -3,8 +3,8 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "dist",    
-    "inlineSourceMap": true,    
-    "watch": true
+    "inlineSourceMap": true,
+    "lib": ["es2015"]
   },  
   "compileOnSave": true,
   "include": [

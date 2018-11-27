@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "public/dist",    
+    "inlineSourceMap": true,    
+    "target": "es5",
+    "strict": true,    
+    "experimentalDecorators": true,
+    "allowJs": true
+  },  
+  "compileOnSave": true,
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
