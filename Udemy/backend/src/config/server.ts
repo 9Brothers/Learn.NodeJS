@@ -1,5 +1,12 @@
 import * as express from 'express';
+import { router } from "../routes/main";
 
-let server = express();
+// Iniciando o web server
+const server = express();
 
-export let app = server;
+// Enviar dados para o servicor (POST, PUT...) no formato JSON
+server.use(express.json())
+
+server.use('/', router);
+
+export const app = server;

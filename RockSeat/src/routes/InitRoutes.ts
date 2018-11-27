@@ -4,4 +4,4 @@ const route: express.Router = express.Router();
 
 route.use('/products', require("./ProductsRoute"));
 
-export let router = route;
+export const router = route;

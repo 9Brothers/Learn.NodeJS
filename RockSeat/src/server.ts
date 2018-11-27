@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as cors from 'cors';
-
 const requireDir = require('require-dir');
 
 // Iniciando o App
