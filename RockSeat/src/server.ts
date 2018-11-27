@@ -15,9 +15,9 @@ app.use(cors());
 
 // Iniciando o DB
 mongoose.connect('mongodb://localhost:27017/node_api', { useNewUrlParser: true });
-requireDir('./models/')
+requireDir('./models/');
 
 // Rotas
 app.use('/api', require('./routes/InitRoutes'));
 
-app.listen(3001);
+app.listen(3000);

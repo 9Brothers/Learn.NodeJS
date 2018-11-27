@@ -1,7 +1,7 @@
 import * as express from 'express';
 
-const router: express.Router = express.Router();
+const route: express.Router = express.Router();
 
-router.use('/products', require('./ProductsRoute'));
+route.use('/products', require("./ProductsRoute"));
 
-module.exports = router;
+export let router = route;

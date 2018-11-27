@@ -1,12 +1,12 @@
 import * as express from 'express';
 import { ProductController } from '../controllers/ProductController';
 
-const ProductRoutes = express.Router();
+const routes = express.Router();
 
-ProductRoutes.get('/', ProductController.Index);
-ProductRoutes.get('/:id', ProductController.Show)
-ProductRoutes.post('/', ProductController.Store);
-ProductRoutes.put('/:id', ProductController.Update);
-ProductRoutes.delete('/:id', ProductController.Destroy);
+routes.get('/', ProductController.Index);
+routes.get('/:id', ProductController.Show)
+routes.post('/', ProductController.Store);
+routes.put('/:id', ProductController.Update);
+routes.delete('/:id', ProductController.Destroy);
 
-module.exports = ProductRoutes;
+export let ProductRoutes = routes
