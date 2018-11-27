@@ -1,18 +1,19 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-import NoticiasComponent from "./components/noticias.component.vue";
-import NoticiasRoute from "./routes/noticias.route";
+import VueRouter, { RouteConfig } from "vue-router";
+import HomeComponent from "./components/home.component";
+import NoticiasComponent from "./components/noticias.component";
+import { router } from "./routes/router";
 
-Vue.use(VueRouter);
+// const router = require('./routes/router') as VueRouter;
 
+// Inicializa os componentes
+Vue.component('home', HomeComponent);
 Vue.component('noticias', NoticiasComponent);
 
-let router = new VueRouter({
-  routes: [
-    new NoticiasRoute
-  ]
-})
+// Inicializa o vue-router
+Vue.use(VueRouter);
 
+// Inicializa o app
 new Vue({
   router
 }).$mount('#app');

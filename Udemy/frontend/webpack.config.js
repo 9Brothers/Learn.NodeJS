@@ -13,15 +13,16 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        use: 'vue-loader'        
+        use: 'vue-loader',
+        exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
     alias: {
       'vue$': 'vue/dist/vue.esm.js' // 'vue.common.js' para webpack 1
-    }
+    },
+    extensions: [ '*', '.tsx', '.ts', '.js', '.json', '.vue' ],
   },
   output: {
     filename: 'bundle.js',
