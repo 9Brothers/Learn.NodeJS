@@ -16,7 +16,6 @@
 <script lang="ts">
 import Vue from "vue";
 import { ComponentOptions } from "vue";
-import { RouteConfig } from "vue-router";
 import { Requester } from "../../../shared/utils/Requester";
 import { INoticia } from "../../../shared/models/INoticia";
 
@@ -48,6 +47,4 @@ export default class NoticiasComponent implements ComponentOptions<Vue> {
     }
   }
 }
-
-export const NoticiasRoute: RouteConfig = { path: '/noticia', component: new NoticiasComponent() };
 </script>
