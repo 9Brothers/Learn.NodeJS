@@ -1,19 +1,21 @@
-import Vue, { ComponentOptions } from "vue";
+// import Vue, { ComponentOptions } from "vue";
+import { Requester } from "../../../shared/utils/Requester";
 
-export default class HomeComponent implements ComponentOptions<Vue> {
-  data() {
-    let nome: string = 'Heber';
+export const HomeComponent = (resolve: any, rejects: any) => {
+  Requester.GetHTML<string>('/templates/home.template.html')
+  .then((value) => {
+    let nome = 'Heber';
 
-    return {
-      nome
-    };
-  }
-  
-  template = `
-    <div>
-      <h1>Bem vindo ao Portal de Notícias!</h1>
-
-      <h3>{{ nome }}</h3>
-    </div>
-  `
+    resolve({
+      template: value,
+      data() {
+        return {
+          nome
+        }
+      }
+    })
+  })
+  .catch((error) => {
+    rejects(error);
+  })
 }

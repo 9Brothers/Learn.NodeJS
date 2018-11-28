@@ -8,7 +8,7 @@ export default class NoticiasComponent implements ComponentOptions<Vue> {
   data () {
     let self = this;
 
-    Requester.Get<INoticia[]>('/api/noticias')
+    Requester.GetJSON<INoticia[]>('/api/noticias')
     .then((values) => {
       self.noticias = values;
     })

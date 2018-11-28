@@ -1,5 +1,5 @@
 export abstract class Requester<T> {
-  public static Get<T>(url: string): Promise<T> {
+  public static GetJSON<T>(url: string): Promise<T> {
     
     return fetch(url, { 
       headers: { 
@@ -16,7 +16,7 @@ export abstract class Requester<T> {
     });
   }
 
-  public static Post<T>(url: string, data: T) {
+  public static PostJSON<T>(url: string, data: T) {
     return fetch(url, {      
       headers: { 'Accept': 'application/json' },
       method: 'POST',
@@ -30,7 +30,7 @@ export abstract class Requester<T> {
     })
   }
 
-  public static Put<T>(url: string, data: T) {
+  public static PutJSON<T>(url: string, data: T) {
     return fetch(url, {      
       headers: { 'Accept': 'application/json' },
       method: 'PUT',
@@ -44,7 +44,7 @@ export abstract class Requester<T> {
     })
   }
 
-  public static Delete(url: string) {
+  public static DeleteJSON(url: string) {
     return fetch(url, {      
       headers: { 'Accept': 'application/json' },
       method: 'DELETE',      
@@ -56,4 +56,23 @@ export abstract class Requester<T> {
       return error;
     })
   }
+
+  public static GetHTML<T>(url: string): Promise<T> {
+    return fetch(url, { 
+      headers: { 
+        'Accept': 'text/html',        
+      },
+      method: 'GET',
+      
+    })
+    .then((value) => {
+      
+      return value.text();
+    })
+    .catch((error) => {
+      return error;
+    });
+  }
 }
+
+
