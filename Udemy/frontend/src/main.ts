@@ -4,8 +4,6 @@ import HomeComponent from "./components/home.component";
 import NoticiasComponent from "./components/noticias.component";
 import { router } from "./routes/router";
 
-// const router = require('./routes/router') as VueRouter;
-
 // Inicializa os componentes
 Vue.component('home', HomeComponent);
 Vue.component('noticias', NoticiasComponent);
@@ -17,6 +15,3 @@ Vue.use(VueRouter);
 new Vue({
   router
 }).$mount('#app');
-
-
-
