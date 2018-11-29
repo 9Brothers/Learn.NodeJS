@@ -1,4 +1,9 @@
-import NoticiasComponent from "../components/noticias.component.vue";
 import { RouteConfig } from "vue-router";
 
-export default class NoticiasRoute implements RouteConfig { path = '/noticia'; component = NoticiasComponent };
+import { NoticiasComponent } from "../components/noticias.component";
+import { NoticiaComponent } from "../components/noticia.component";
+
+export const NoticiasRoute: RouteConfig[] = [
+  { path: '/noticia', component: NoticiasComponent },
+  { path: '/noticia/:id', component: NoticiaComponent }
+];
