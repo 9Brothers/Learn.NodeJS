@@ -4,19 +4,19 @@ import { AsyncComponent } from "vue";
 
 export const HomeComponent: AsyncComponent = (resolve, rejects) => {
   Requester.GetHTML<string>('/templates/home.template.html')
-  .then((value) => {
-    let nome = 'Heber';
+    .then((template) => {
+      let nome = 'Heber';
 
-    resolve({
-      template: value,
-      data() {
-        return {
-          nome
+      resolve({
+        template,
+        data() {
+          return {
+            nome
+          }
         }
-      }
+      })
     })
-  })
-  .catch((error) => {
-    rejects(error);
-  })
-}
+    .catch((error) => {
+      rejects(error);
+    });
+};

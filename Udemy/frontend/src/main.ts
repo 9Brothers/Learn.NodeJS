@@ -1,7 +1,7 @@
 import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
+import VueRouter from "vue-router";
 import { HomeComponent } from "./components/home.component";
-import NoticiasComponent from "./components/noticias.component";
+import { NoticiasComponent } from "./components/noticias.component";
 import { router } from "./routes/router";
 
 // Inicializa os componentes

@@ -1,35 +1,36 @@
-import Vue, { ComponentOptions } from "vue";
+import { AsyncComponent } from "vue";
 import { Requester } from "../../../shared/utils/Requester";
 import { INoticia } from "../../../shared/models/INoticia";
 
-export default class NoticiasComponent implements ComponentOptions<Vue> {
-  public noticias: INoticia[] = [];
-  
-  data () {
-    let self = this;
+export const NoticiasComponent: AsyncComponent = (resolve, rejects) => {
+  Requester.GetHTML<string>('/templates/noticias.template.html')
+    .then((template) => {
 
-    Requester.GetJSON<INoticia[]>('/api/noticias')
-    .then((values) => {
-      self.noticias = values;
+      resolve({
+        template,
+        data () {
+          return {
+            noticias: []
+          }
+        },
+        methods: {
+          GetNoticias() {
+            let self: any = this;
+
+            Requester.GetJSON<INoticia[]>('/api/noticias')
+              .then((values) => {
+                self.noticias = values;
+              });
+          }
+        },
+        created() {
+          let self: any = this;
+
+          self.GetNoticias();
+        }
+      });
     })
-
-    return {
-      noticias: self.noticias
-    }
-  }
-
-  template = `
-    <table>
-      <tr>
-        <td>ID</td>
-        <td>Título</td>
-        <td>Notícia</td>
-      </tr>
-      <tr v-for="noticia in noticias" v-bind:key="noticia.id_noticia">
-        <td>{{ noticia.id_noticia }}</td>
-        <td>{{ noticia.titulo }}</td>
-        <td>{{ noticia.noticia }}</td>
-      </tr>
-    </table>
-  `;
-}
+    .catch((error) => {
+      rejects(error);
+    })
+};
