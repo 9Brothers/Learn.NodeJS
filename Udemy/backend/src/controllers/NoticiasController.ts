@@ -1,27 +1,19 @@
 import * as express from "express";
 import { INoticia } from "../../../shared/models/INoticia";
-import { MySqlPromise } from "../common/MySqlPromise";
+import { NoticiaFactory } from "../factories/NoticiaFactory";
 
 export class NoticiasController {
 
   // GET: /noticias
   public static async Get(req: express.Request, res: express.Response) {
     
-    const noticias = await MySqlPromise.Query<INoticia[]>("SELECT * FROM noticias");
-
-    return res.json(noticias);
+    return res.json(await NoticiaFactory.Get());
   }
 
   // GET: /noticias/{id} 
   public static async GetById(req: express.Request, res: express.Response) {
     
-    const noticia = await MySqlPromise.Query<INoticia[]>(`SELECT * FROM noticias WHERE id_noticia = ${req.params.id}`);
-
-    if (noticia.length) {
-      return res.json(noticia[0]);
-    }
-
-    return null;
+    return res.json(await NoticiaFactory.GetById(req.params.id));
   }
 
   // POST: /noticias
@@ -29,12 +21,13 @@ export class NoticiasController {
 
     const noticia = req.body as INoticia;
 
-    const result = await MySqlPromise.Query<INoticia[]>(`INSERT INTO noticias (titulo, noticia) VALUES ("${noticia.titulo}", "${noticia.noticia}")`)
+    const result = await NoticiaFactory.Store(noticia) ;
 
-    if (result.length) {
-      return res.json(result[0])
+    if(typeof result === 'number') {
+      
+      return res.status(result);
     }
 
-    return res.json(null);
+    return res.json(result);
   }
 }
