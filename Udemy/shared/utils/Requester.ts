@@ -18,7 +18,10 @@ export abstract class Requester<T> {
 
   public static PostJSON<T>(url: string, data: T) {
     return fetch(url, {      
-      headers: { 'Accept': 'application/json' },
+      headers: { 
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       method: 'POST',
       body: JSON.stringify(data)
     })

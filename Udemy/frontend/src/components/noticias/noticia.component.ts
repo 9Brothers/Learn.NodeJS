@@ -1,10 +1,10 @@
 import { AsyncComponent } from "vue";
-import { Requester } from "../../../shared/utils/Requester";
-import { INoticia } from "../../../shared/models/INoticia";
+import { Requester } from "../../../../shared/utils/Requester";
+import { INoticia } from "../../../../shared/models/INoticia";
 import { Route } from "vue-router";
 
 export const NoticiaComponent: AsyncComponent = (resolve, rejects) => {
-  Requester.GetHTML<string>('/templates/noticia.template.html')
+  Requester.GetHTML<string>('/templates/noticias/noticia.template.html')
     .then((template) => {
 
       resolve({

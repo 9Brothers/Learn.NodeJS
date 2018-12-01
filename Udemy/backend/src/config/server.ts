@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as cors from 'cors';
-import { main } from "../routes/main";
+import { main } from "../routes/main.route";
 
 // Iniciando o web server
 const server = express();

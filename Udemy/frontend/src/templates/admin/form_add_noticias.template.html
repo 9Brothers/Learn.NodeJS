@@ -1,0 +1,17 @@
+<div>
+  <h1>Adicionar notícia</h1>
+
+  <form action="">
+    <label for="titulo">Título</label>
+    <input type="text" name="titulo" id="titulo" placeholder="Título da notícia" v-model="titulo">
+
+    <hr>
+
+    <label for="noticia">Notícia</label>
+    <textarea name="noticia" id="noticia" cols="30" rows="5" v-model="noticia"></textarea>
+
+    <hr>
+
+    <input type="button" value="Enviar" v-on:click="Enviar">
+  </form>
+</div>

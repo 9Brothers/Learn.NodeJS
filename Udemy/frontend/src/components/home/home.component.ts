@@ -1,9 +1,9 @@
 // import Vue, { ComponentOptions } from "vue";
-import { Requester } from "../../../shared/utils/Requester";
+import { Requester } from "../../../../shared/utils/Requester";
 import { AsyncComponent } from "vue";
 
 export const HomeComponent: AsyncComponent = (resolve, rejects) => {
-  Requester.GetHTML<string>('/templates/home.template.html')
+  Requester.GetHTML<string>('/templates/home/home.template.html')
     .then((template) => {
       let nome = 'Heber';
 

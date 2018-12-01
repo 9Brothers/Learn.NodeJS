@@ -1,7 +1,7 @@
-import { NoticiaModel } from "../models/NoticiaModel";
+import { NoticiaModel } from "../models/noticia.model";
 import { INoticia } from "../../../shared/models/INoticia";
 
-export class NoticiaFactory {
+export abstract class NoticiaFactory {
   public static async Get(): Promise<INoticia[]> {
     return new NoticiaModel().Get();
   }
