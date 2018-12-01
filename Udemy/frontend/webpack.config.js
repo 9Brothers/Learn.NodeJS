@@ -1,5 +1,6 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.ts',
@@ -30,6 +31,10 @@ module.exports = {
     path: path.resolve(__dirname, 'public/dist')
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new CopyWebpackPlugin([
+      { from: `${__dirname}/src/templates`, to: `${__dirname}/public/templates` },
+      { from: `${__dirname}/src/index.html`, to: `${__dirname}/public` }
+    ])
   ]
 }
