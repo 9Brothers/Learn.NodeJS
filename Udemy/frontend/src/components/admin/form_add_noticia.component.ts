@@ -10,24 +10,38 @@ export const FormAddNoticiaComponent: AsyncComponent = (resolve, rejects) => {
         template,
         data () {
           return {
-            titulo: 'asd',
-            noticia: 'asd'
+            model: {
+              titulo: '',
+              resumo: '',
+              autor: '',
+              noticia: '',
+              data_noticia: ''              
+            }
           }
         },
         methods: {
-          Enviar: function (this: INoticia, event) {
+          Enviar: function (this: any, event) {
             let self = this;
             
-            Requester.PostJSON('/api/noticias', {
-              titulo: self.titulo,
-              noticia: self.noticia
-            })
+            Requester.PostJSON('/api/noticias', self.model)
             .then(() => {
-              self.titulo = ''
-              self.noticia = ''
+              (<INoticia>self.model).titulo = '';
+              (<INoticia>self.model).resumo = '';
+              (<INoticia>self.model).autor = '';
+              (<INoticia>self.model).noticia = '';
+              (<INoticia>self.model).data_noticia = '';
             });
-          }
-        }
+          },
+          Validate(this: any) {
+
+            return this.model.titulo &&
+            this.model.resumo &&
+            (this.model.resumo.length >= 10 || this.model.resumo.length <= 100) &&
+            this.model.autor &&
+            this.model.data_noticia &&
+            this.model.noticia
+          },          
+        },        
       });
     })
     .catch((error) => {

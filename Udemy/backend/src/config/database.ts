@@ -7,18 +7,18 @@ const mySqlConnection = mysql.createConnection({
   password: 'root'
 });
 
-mySqlConnection.config.queryFormat = function (query, values) {
-  if (!values) return query;
+// mySqlConnection.config.queryFormat = function (query, values) {
+//   if (!values) return query;
 
-  return query.replace(/\:(\w+)/g, function (txt: any, key: any) {
+//   return query.replace(/\:(\w+)/g, function (txt: any, key: any) {
   
-    if (values.hasOwnProperty(key)) {
-      return this.escape(values[key]);
-    }
+//     if (values.hasOwnProperty(key)) {
+//       return this.escape(values[key]);
+//     }
 
-    return txt;
+//     return txt;
 
-  }.bind(this));
-};
+//   }.bind(this));
+// };
 
 export const MySqlConnection = mySqlConnection;

@@ -2,23 +2,23 @@ import { INoticia } from "../../../shared/models/INoticia";
 import { MySqlPromise } from "../common/MySqlPromise";
 
 export class NoticiaModel implements INoticia {
-  Update(value: INoticia): Promise<INoticia> {
-    throw new Error("Method not implemented.");
-  }
   id_noticia: number;
   titulo: string;
   noticia: string;
-  data_criacao: string;
+  resumo: string;
+  autor: string;
+  data_criacao: string;  
+  data_noticia: string;
   
   Get(): Promise<INoticia[]> {
-    return MySqlPromise.Query<INoticia[]>({ sql: "SELECT * FROM noticias" });
+    return MySqlPromise.Query<INoticia[]>("SELECT * FROM noticias");
   }
   
-  GetById(id: number | string): Promise<INoticia> {
+  GetById(id_noticia: number | string): Promise<INoticia> {
 
     return new Promise<INoticia>((resolve, rejects) => {
 
-      MySqlPromise.Query<INoticia[]>({ sql: `SELECT * FROM noticias WHERE id_noticia = :id`, values: { id } })
+      MySqlPromise.Query<INoticia[]>(`SELECT * FROM noticias WHERE id_noticia = ?`, [ id_noticia ] )
         .then((value) => {
 
           const noticia = value;
@@ -37,7 +37,7 @@ export class NoticiaModel implements INoticia {
 
   Store(noticia: INoticia): Promise<any> {
     return new Promise<number>((resolve, rejects) => {
-      MySqlPromise.Query({ sql: `INSERT INTO noticias (titulo, noticia) VALUES (:titulo, :noticia)`, values: noticia })
+      MySqlPromise.Query(`INSERT INTO noticias SET ?`, noticia)
         .then(() => {
           resolve(200)
         })
@@ -45,5 +45,9 @@ export class NoticiaModel implements INoticia {
           rejects(err);
         })
     })
+  }
+
+  Update(value: INoticia): Promise<INoticia> {
+    throw new Error("Method not implemented.");
   }
 }

@@ -2,6 +2,7 @@ import * as express from "express";
 import { INoticia } from "../../../shared/models/INoticia";
 import { NoticiaFactory } from "../factories/noticia.factory";
 import { IController } from "./IController";
+import { NoticiasValidation } from "../validations/noticias.validation";
 
 export class NoticiasController implements IController {
   // GET: /noticias
@@ -16,6 +17,13 @@ export class NoticiasController implements IController {
   
   // POST: /noticias
   public async Save(req: express.Request, res: express.Response): Promise<express.Response> {
+    let erros = NoticiasValidation.Validate(req);
+
+    if(erros) {
+      
+      return res.json(erros);
+    }
+
     const noticia = req.body as INoticia;
 
     const result = await NoticiaFactory.Store(noticia) ;
